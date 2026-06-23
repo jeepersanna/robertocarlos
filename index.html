@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>★ THE LEGEND OF ROBERTO CARLOS ★ // a crash course for my friend</title>
+<style>
+  :root{
+    --verde:#009b3a;       /* brazil green */
+    --amarelo:#ffdf00;     /* brazil yellow */
+    --azul:#002776;        /* brazil blue */
+    --azul2:#0044cc;
+    --ink:#0a0a14;
+    --cream:#fff8e7;
+    --hot:#ff2d6f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Trebuchet MS","Comic Sans MS",Verdana,sans-serif;
+    background:var(--azul);
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 12px, transparent 12px 24px);
+    color:var(--cream);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  /* ---------- marquee bar ---------- */
+  .marquee{
+    background:var(--amarelo);color:var(--ink);
+    font-weight:900;text-transform:uppercase;letter-spacing:4px;
+    white-space:nowrap;overflow:hidden;padding:12px 0;border-bottom:5px solid var(--ink);
+    font-size:1.25rem;position:sticky;top:0;z-index:50;
+  }
+  @media(max-width:680px){.marquee{font-size:1rem;}}
+  .marquee span{display:inline-block;white-space:nowrap;animation:scroll 40s linear infinite;}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- hero ---------- */
+  .hero{
+    text-align:center;padding:60px 20px 50px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 30%, rgba(0,155,58,.55), transparent 60%),
+      linear-gradient(180deg, var(--azul) 0%, var(--ink) 100%);
+    border-bottom:6px solid var(--amarelo);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:url('img/rc-hero-smooth.jpg') 72% center/cover no-repeat;
+    opacity:.26;mix-blend-mode:luminosity;
+    animation:heroDrift 14s ease-in-out infinite alternate;
+    -webkit-mask-image:linear-gradient(to right, transparent 0%, transparent 14%, #000 50%, #000 100%);
+            mask-image:linear-gradient(to right, transparent 0%, transparent 14%, #000 50%, #000 100%);
+  }
+  @keyframes heroDrift{
+    0%{opacity:.16;transform:scale(1.04) translateY(0);}
+    100%{opacity:.32;transform:scale(1.10) translateY(-8px);}
+  }
+  .hero > *{position:relative;z-index:1;}
+  @media(prefers-reduced-motion:reduce){.hero::before{animation:none;opacity:.20;}}
+  .kicker{
+    color:var(--amarelo);font-weight:bold;letter-spacing:4px;text-transform:uppercase;
+    font-size:.9rem;margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,9vw,6rem);line-height:.95;text-transform:uppercase;
+    color:#fff;letter-spacing:-1px;
+    text-shadow:4px 4px 0 var(--verde), 8px 8px 0 var(--hot);
+    margin-bottom:6px;
+  }
+  .hero .num{
+    display:inline-block;font-size:clamp(3rem,12vw,8rem);font-weight:900;color:var(--amarelo);
+    -webkit-text-stroke:3px var(--ink);text-stroke:3px var(--ink);
+    transform:rotate(-6deg);margin:8px 0;
+    text-shadow:5px 5px 0 var(--hot);
+  }
+  .hero p.sub{max-width:640px;margin:14px auto 0;font-size:1.05rem;color:var(--cream);}
+  .badge{
+    display:inline-block;background:var(--hot);color:#fff;font-weight:bold;
+    padding:4px 14px;border-radius:20px;transform:rotate(-3deg);margin-top:18px;
+    border:2px solid #fff;font-size:.9rem;
+  }
+  .scrolldown{margin-top:26px;font-size:.85rem;color:var(--amarelo);animation:bob 1.6s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+  /* ---------- layout ---------- */
+  section{padding:50px 20px;max-width:980px;margin:0 auto;}
+  h2.section-title{
+    font-size:clamp(1.8rem,5vw,3rem);text-transform:uppercase;color:var(--amarelo);
+    text-shadow:3px 3px 0 var(--hot);margin-bottom:8px;letter-spacing:-.5px;
+  }
+  .section-title .em{font-size:1.6em;vertical-align:-6px;margin-right:6px;}
+  .lead{color:#dfe7ff;font-size:1.1rem;margin-bottom:26px;max-width:760px;}
+
+  /* ---------- "who is" callout ---------- */
+  .why-box{
+    background:var(--hot);color:#fff;border:4px solid #fff;border-radius:14px;
+    padding:24px;transform:rotate(-1deg);box-shadow:8px 8px 0 var(--ink);
+    font-size:1.15rem;
+  }
+  .why-box strong{background:var(--amarelo);color:var(--ink);padding:0 4px;}
+
+  /* ---------- stat grid ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-top:10px;}
+  .stat{
+    background:linear-gradient(160deg,#fff,#ffe);color:var(--ink);
+    border:3px solid var(--ink);border-radius:12px;padding:18px;text-align:center;
+    box-shadow:5px 5px 0 var(--verde);
+  }
+  .stat .big{font-size:2.4rem;font-weight:900;color:var(--azul);line-height:1;}
+  .stat .lbl{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;font-weight:bold;margin-top:6px;}
+
+  /* ---------- timeline ---------- */
+  .timeline{position:relative;margin-top:20px;padding-left:30px;border-left:4px dashed var(--amarelo);}
+  .tl-item{margin-bottom:26px;position:relative;}
+  .tl-item::before{
+    content:"⚽";position:absolute;left:-44px;top:-2px;font-size:1.3rem;
+    background:var(--azul);border-radius:50%;width:30px;height:30px;display:grid;place-items:center;
+    border:2px solid var(--amarelo);
+  }
+  .tl-year{color:var(--amarelo);font-weight:900;font-size:1.2rem;}
+  .tl-item h3{color:#fff;margin:2px 0;}
+  .tl-item p{color:#cdd7f5;font-size:.98rem;}
+
+  /* ---------- free kick feature ---------- */
+  .freekick{
+    background:
+      repeating-linear-gradient(90deg, rgba(255,223,0,.08) 0 20px, transparent 20px 40px),
+      linear-gradient(135deg, var(--verde), var(--ink));
+    border:5px solid var(--amarelo);border-radius:18px;padding:30px;margin-top:10px;
+    box-shadow:10px 10px 0 rgba(0,0,0,.4);
+  }
+  .freekick h3{color:var(--amarelo);font-size:1.6rem;text-transform:uppercase;margin-bottom:12px;}
+  .fk-pitch{
+    background:var(--verde);border:3px solid #fff;border-radius:10px;height:220px;position:relative;
+    margin:18px 0;overflow:hidden;
+    background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 30px, transparent 30px 60px);
+  }
+  .ball{position:absolute;font-size:1.5rem;left:5%;bottom:16px;z-index:2;
+    animation:bend 5.5s cubic-bezier(.33,.04,.28,1) infinite;will-change:left,bottom,transform,opacity;}
+  @keyframes bend{
+    0%   {left:5%;                bottom:16px;  transform:rotate(0deg)   scale(.9); opacity:0;}
+    5%   {opacity:1;}
+    22%  {left:30%;              bottom:96px;  transform:rotate(220deg);}
+    42%  {left:60%;              bottom:152px; transform:rotate(470deg);}
+    60%  {left:90%;              bottom:150px; transform:rotate(700deg);} /* swerves wide & high, surely missing?! */
+    79%  {left:calc(73% + 30px); bottom:84px;  transform:rotate(900deg);}
+    87%  {left:calc(73% + 26px); bottom:60px;  transform:rotate(975deg) scale(1);} /* nestles into the net */
+    94%  {left:calc(73% + 26px); bottom:60px;  transform:rotate(975deg); opacity:1;} /* rests in the goal */
+    100% {left:calc(73% + 26px); bottom:60px;  transform:rotate(975deg); opacity:0;}
+  }
+  @media(prefers-reduced-motion:reduce){.ball{animation:none;left:calc(73% + 26px);bottom:60px;opacity:1;}}
+  .wall{position:absolute;left:40%;bottom:14px;font-size:1.4rem;letter-spacing:-4px;}
+  .goal{position:absolute;left:73%;bottom:48px;font-size:4.8rem;line-height:1;z-index:1;filter:drop-shadow(0 0 4px rgba(0,0,0,.4));}
+  .gol{position:absolute;left:30%;top:20px;font-weight:900;color:var(--amarelo);font-size:1.9rem;
+    text-transform:uppercase;letter-spacing:1px;text-shadow:2px 2px 0 var(--hot);opacity:0;animation:golpop 5.5s ease infinite;}
+  @keyframes golpop{0%,82%{opacity:0;transform:scale(.5) rotate(-6deg);}89%{opacity:1;transform:scale(1.25) rotate(-6deg);}95%{opacity:1;transform:scale(1) rotate(-6deg);}100%{opacity:0;}}
+  .physics{background:rgba(0,0,0,.35);border-left:4px solid var(--hot);padding:14px 16px;border-radius:8px;margin-top:14px;font-size:.98rem;}
+
+  /* ---------- side quest cards ---------- */
+  .sq-banner{
+    background:var(--amarelo);color:var(--ink);font-weight:900;text-transform:uppercase;
+    text-align:center;padding:10px;border:3px dashed var(--ink);border-radius:10px;
+    letter-spacing:3px;transform:rotate(-1deg);margin-bottom:24px;font-size:1rem;
+  }
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+  .card{
+    background:linear-gradient(170deg,#fff,#f0f4ff);color:var(--ink);
+    border:3px solid var(--ink);border-radius:14px;overflow:hidden;
+    box-shadow:6px 6px 0 var(--hot);transition:transform .15s ease;
+  }
+  .card:hover{transform:translateY(-6px) rotate(-1deg);}
+  .card .top{padding:14px;color:#fff;position:relative;}
+  .card .pos{font-size:.7rem;text-transform:uppercase;letter-spacing:2px;opacity:.9;}
+  .card .name{font-size:1.5rem;font-weight:900;line-height:1;}
+  .card .nick{font-style:italic;font-size:.85rem;opacity:.95;}
+  .card .body{padding:14px;font-size:.92rem;}
+  .card .body ul{list-style:none;margin-top:8px;}
+  .card .body li{padding:3px 0;border-bottom:1px dotted #ccc;}
+  .card .body li b{color:var(--azul);}
+  .c-r9 .top{background:linear-gradient(135deg,#d4001a,#7a0010);}
+  .c-dinho .top{background:linear-gradient(135deg,#009b3a,#00351b);}
+  .c-riva .top{background:linear-gradient(135deg,#0044cc,#001a52);}
+  .c-cafu .top{background:linear-gradient(135deg,#ff7a00,#8a3d00);}
+  .c-roma .top{background:linear-gradient(135deg,#7b2ff7,#2c0a6b);}
+  .c-raul .top{background:linear-gradient(135deg,#243b8f,#0c1538);}
+  .c-zidane .top{background:linear-gradient(135deg,#5a5f6e,#191b22);}
+  .card .photo{width:100%;height:190px;object-fit:cover;object-position:50% 28%;display:block;border-bottom:3px solid var(--ink);background:#0a0a14;}
+
+  /* ---------- quote ---------- */
+  .quote{text-align:center;padding:40px 20px;}
+  .quote blockquote{font-size:clamp(1.3rem,4vw,2rem);color:var(--amarelo);font-style:italic;max-width:760px;margin:0 auto;text-shadow:2px 2px 0 var(--ink);}
+  .quote cite{display:block;margin-top:14px;color:#cdd7f5;font-style:normal;}
+  .quotes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:10px;}
+  .qcard{background:rgba(255,248,231,.06);border-left:5px solid var(--amarelo);border-radius:0 12px 12px 0;padding:18px 20px;}
+  .qcard p{font-style:italic;color:#eaf3ff;font-size:1rem;line-height:1.6;}
+  .qcard cite{display:block;margin-top:10px;color:var(--amarelo);font-style:normal;font-weight:bold;font-size:.88rem;}
+
+  /* ---------- quiz ---------- */
+  .quiz{background:var(--ink);border:4px solid var(--amarelo);border-radius:16px;padding:26px;margin-top:10px;}
+  .quiz h3{color:var(--amarelo);margin-bottom:14px;}
+  .q{margin-bottom:18px;}
+  .q p{font-weight:bold;margin-bottom:8px;}
+  .q button{
+    display:block;width:100%;text-align:left;background:#1a1a2e;color:var(--cream);
+    border:2px solid #44446a;border-radius:8px;padding:10px 12px;margin:6px 0;cursor:pointer;
+    font-family:inherit;font-size:.95rem;transition:background .12s;
+  }
+  .q button:hover{background:#26264a;}
+  .q button.right{background:var(--verde);border-color:#fff;color:#fff;font-weight:bold;}
+  .q button.wrong{background:#8a0010;border-color:#fff;color:#fff;}
+  .q .fb{margin-top:6px;font-size:.9rem;color:var(--amarelo);min-height:1.2em;}
+
+  /* ---------- photos & gifs ---------- */
+  .snap{max-width:440px;margin:22px auto 0;background:#fff;padding:10px 10px 0;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--hot);transform:rotate(-1deg);}
+  .snap img{width:100%;display:block;}
+  .snap .cap{color:var(--ink);font-weight:bold;text-align:center;padding:9px 4px;font-size:.9rem;}
+  .thighs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-top:20px;}
+  .thighs-grid figure{margin:0;background:#fff;border:3px solid var(--ink);border-radius:10px;overflow:hidden;box-shadow:5px 5px 0 var(--hot);transition:transform .15s ease;}
+  .thighs-grid figure:hover{transform:translateY(-5px) rotate(-1deg);}
+  .thighs-grid img{width:100%;height:185px;object-fit:cover;display:block;border-bottom:3px solid var(--ink);}
+  .thighs-grid figcaption{color:var(--ink);font-weight:bold;font-size:.82rem;padding:9px 10px;text-align:center;}
+  .photo-strip{display:flex;gap:14px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory;}
+  .photo-strip figure{margin:0;flex:0 0 auto;width:260px;background:#fff;padding:8px 8px 0;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--verde);scroll-snap-align:start;}
+  .photo-strip img{width:100%;height:200px;object-fit:cover;display:block;}
+  .photo-strip figcaption{color:var(--ink);font-weight:bold;text-align:center;font-size:.82rem;padding:8px 4px;}
+  .hero-photo{max-width:560px;margin:24px auto 0;border:5px solid #fff;border-radius:10px;box-shadow:8px 8px 0 var(--hot);transform:rotate(-1deg);overflow:hidden;}
+  .hero-photo img{width:100%;display:block;}
+  .who-wrap{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;}
+  .who-wrap .why-box{flex:1;min-width:280px;}
+  .polaroid{background:#fff;padding:10px 10px 14px;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--verde);transform:rotate(2deg);width:230px;max-width:100%;margin:0 auto;}
+  .polaroid img{width:100%;display:block;border:1px solid #ddd;}
+  .polaroid .cap{color:var(--ink);font-size:.78rem;text-align:center;margin-top:8px;font-weight:bold;font-family:"Comic Sans MS",cursive;}
+  .gif-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+  .gif-card{background:#000;border:4px solid var(--amarelo);border-radius:12px;overflow:hidden;box-shadow:6px 6px 0 rgba(0,0,0,.4);}
+  .gif-card img{width:100%;display:block;min-height:150px;background:#111 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text x="50%" y="55%" font-size="26" text-anchor="middle">⚽</text></svg>') center no-repeat;}
+  .gif-card .cap{background:var(--ink);color:var(--cream);font-size:.82rem;padding:9px 11px;}
+  .gif-card .cap a{color:#9fd0ff;}
+  /* full-bleed gif bands littered between sections */
+  .gif-band{position:relative;width:100vw;left:50%;margin-left:-50vw;height:clamp(240px,52vh,520px);overflow:hidden;background:#000;border-top:6px solid var(--amarelo);border-bottom:6px solid var(--amarelo);}
+  .gif-band img{width:100%;height:100%;object-fit:cover;display:block;opacity:.9;}
+  .gif-band .label{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px;pointer-events:none;}
+  .gif-band .label span{background:rgba(10,10,20,.62);color:var(--amarelo);font-weight:900;text-transform:uppercase;letter-spacing:2px;padding:10px 20px;border:3px solid var(--amarelo);font-size:clamp(1.1rem,3.5vw,2.2rem);transform:rotate(-2deg);text-shadow:2px 2px 0 var(--hot);}
+  .gif-band .src{position:absolute;right:8px;bottom:8px;font-size:.66rem;color:#fff;background:rgba(0,0,0,.5);padding:2px 7px;border-radius:8px;text-decoration:none;}
+
+  /* ---------- theater ---------- */
+  .tv-frame{background:#111;border:6px solid #2b2b3d;border-radius:16px;padding:10px;box-shadow:10px 10px 0 rgba(0,0,0,.4), inset 0 0 0 3px #000;}
+  .player-wrap{position:relative;padding-bottom:56.25%;height:0;border-radius:8px;overflow:hidden;background:#000;}
+  .player-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
+  .now-playing{margin-top:12px;background:var(--ink);border:2px solid var(--amarelo);border-radius:8px;padding:8px 12px;font-size:.9rem;color:var(--cream);}
+  .now-playing #np{color:var(--amarelo);font-weight:bold;}
+  .now-playing a{color:#9fd0ff;}
+  .reel{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px;}
+  @media(max-width:680px){.reel{grid-template-columns:1fr;}}
+  .reel-group h4{color:var(--amarelo);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-size:1rem;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{background:var(--cream);color:var(--ink);border:2px solid var(--ink);border-radius:20px;padding:7px 12px;font-family:inherit;font-size:.82rem;font-weight:bold;cursor:pointer;box-shadow:3px 3px 0 var(--verde);transition:transform .1s;}
+  .chip:hover{transform:translateY(-2px);background:var(--amarelo);}
+  .chip.fk{box-shadow:3px 3px 0 var(--hot);}
+  .chip.live{background:var(--hot);color:#fff;border-color:#fff;}
+
+  /* ---------- world cup ---------- */
+  .wc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:10px 0 22px;}
+  .wc-card{background:linear-gradient(170deg,#1a1a2e,#0a0a14);border:3px solid #33334d;border-radius:14px;padding:18px;}
+  .wc-card .yr{font-size:1.9rem;font-weight:900;color:#fff;line-height:1;}
+  .wc-card .host{font-size:.78rem;color:#9aa6d6;}
+  .wc-card .res{font-size:.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:bold;padding:3px 10px;border-radius:12px;display:inline-block;margin:8px 0 4px;}
+  .wc-card.gold{border-color:var(--amarelo);box-shadow:6px 6px 0 rgba(255,223,0,.25);}
+  .wc-card.gold .res{background:var(--amarelo);color:var(--ink);}
+  .wc-card.silver .res{background:#c0c0c0;color:var(--ink);}
+  .wc-card .res.exit{background:#555;color:#fff;}
+  .wc-card ul{list-style:none;margin-top:6px;font-size:.9rem;color:#cdd7f5;}
+  .wc-card li{padding:2px 0;}
+  .wc-card li b{color:var(--amarelo);}
+
+  .watch-btn{margin-top:12px;width:100%;background:var(--ink);color:var(--amarelo);border:2px solid var(--ink);border-radius:8px;padding:9px;font-family:inherit;font-weight:bold;cursor:pointer;}
+  .watch-btn:hover{background:var(--azul);color:#fff;}
+
+  /* ---------- footer ---------- */
+  footer{text-align:center;padding:40px 20px 60px;border-top:6px solid var(--amarelo);background:var(--ink);}
+  footer .heart{color:var(--hot);font-size:1.4rem;}
+  footer .sources{font-size:.72rem;color:#8893bf;max-width:760px;margin:16px auto 0;line-height:1.5;}
+  footer .sources a{color:#aab6e6;}
+  a.pill{display:inline-block;background:var(--verde);color:#fff;text-decoration:none;padding:8px 18px;border-radius:24px;border:2px solid #fff;font-weight:bold;margin-top:10px;}
+</style>
+</head>
+<body>
+
+<div class="marquee"><span>IT'S YOUR BOY WITH THE CUPS&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;HOW DO YOU NOT KNOW HIM??&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;THIS MAN IS DANGEROUS 👀&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;THE FREE KICK THAT BROKE PHYSICS&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;MESSI WOULD NEVER&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;LEFT BACK · ROCKET LEG · 5 STARS ON THE CREST&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;KEEP SCROLLING, BESTIE&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;IT'S YOUR BOY WITH THE CUPS&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;HOW DO YOU NOT KNOW HIM??&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;THIS MAN IS DANGEROUS 👀&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;THE FREE KICK THAT BROKE PHYSICS&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;MESSI WOULD NEVER&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;LEFT BACK · ROCKET LEG · 5 STARS ON THE CREST&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;KEEP SCROLLING, BESTIE&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;</span></div>
+
+<header class="hero">
+  <div class="kicker">A loving (slightly judgmental) intervention for a Brazil fan who (somehow) missed this guy</div>
+  <h1>Roberto<br>Carlos</h1>
+  <div class="num">#3</div>
+  <div style="color:#fff;font-weight:900;letter-spacing:2px;text-transform:uppercase;font-size:1rem;margin-top:-6px;">…and #6</div>
+  <p style="color:var(--amarelo);font-size:.9rem;margin:8px 0 10px;font-style:italic;">P.S. from me: these were MY numbers as a player too, partly because of him 💛 (and two USWNT legends, circa '96–'99)</p>
+  <p class="sub">The most attacking left-back the game has ever seen. A thunderbolt left foot. A World Cup winner. And the man who scored a goal so impossible that <em>actual physicists</em> wrote a paper about it.</p>
+  <div class="badge" style="margin-top:22px;">⚠ You're about to become a fan ⚠</div>
+  <div class="scrolldown">▼ scroll, please ▼</div>
+</header>
+
+<!-- THEATER -->
+<section id="theater">
+  <h2 class="section-title"><span class="em">📺</span>The film room</h2>
+  <p class="lead">Hit play and let it roll, <strong>one clip at a time</strong>, so nothing fights for your speakers. Tap any title to switch. It starts on mute (browsers insist), so <b>turn the sound up</b> for the commentary, it's half the magic.</p>
+  <div class="tv">
+    <div class="tv-frame">
+      <div class="player-wrap">
+        <iframe id="player" src="https://www.youtube-nocookie.com/embed/WLgMRyRjVrI?autoplay=1&mute=1&rel=0" title="Roberto Carlos clip" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="now-playing">▶ NOW PLAYING: <span id="np">THE free kick vs France (1997)</span> &nbsp;·&nbsp; <a id="ytlink" href="https://www.youtube.com/watch?v=WLgMRyRjVrI" target="_blank" rel="noopener">open on YouTube ↗</a></div>
+  </div>
+
+  <div class="reel">
+    <div class="reel-group">
+      <h4>🚀 Roberto Carlos</h4>
+      <div class="chips">
+        <button class="chip fk live" data-vid="WLgMRyRjVrI" data-title="THE free kick vs France (1997)">THE France free kick ’97</button>
+        <button class="chip fk" data-vid="crKwlbwvr88" data-title="The France free kick — Sky Sports HD commentary">France FK · HD commentary</button>
+        <button class="chip fk" data-vid="WhVDFEW5348" data-title="The impossible rocket vs Tenerife (1998)">The Tenerife rocket 🚀</button>
+        <button class="chip" data-vid="llh5860tkoE" data-title="Roberto Carlos — Top 10 Free Kicks">Top 10 free kicks</button>
+        <button class="chip" data-vid="9QiuSzPz53I" data-title="Roberto Carlos — 49 Free Kick Goals">All 49 free-kick goals</button>
+        <button class="chip" data-vid="MC97_I6VigI" data-title="Real Madrid official: Roberto Carlos' best free-kicks">Real Madrid: best FKs</button>
+      </div>
+    </div>
+    <div class="reel-group">
+      <h4>🇧🇷 The squad <span style="font-weight:normal;font-size:.8rem;">(side quest)</span></h4>
+      <div class="chips">
+        <button class="chip" data-vid="207ePL8bXoU" data-title="Ronaldo (R9) — best goals compilation">Ronaldo (R9)</button>
+        <button class="chip" data-vid="LQsuRwbNgcw" data-title="Ronaldo — all FIFA World Cup goals">Ronaldo · WC goals</button>
+        <button class="chip" data-vid="wkHC7W2xYIY" data-title="Ronaldinho — 100+ wow skills">Ronaldinho skills</button>
+        <button class="chip" data-vid="gbpCM1-SaHY" data-title="Rivaldo — Top 10 goals">Rivaldo top 10</button>
+        <button class="chip" data-vid="xEZo7llPz1M" data-title="Cafu — career highlights, GOAT right-back">Cafu highlights</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIFS -->
+<section>
+  <h2 class="section-title"><span class="em">🌀</span>Roberto in motion</h2>
+  <p class="lead">Stills don't do that left foot justice. (These play straight from the page, no internet needed. Credit to the original clips lives under each one.)</p>
+  <div class="gif-grid">
+    <div class="gif-card">
+      <img src="img/giphy1.gif" alt="Roberto Carlos free kick GIF" loading="lazy">
+      <div class="cap">🚀 That left-foot thunder · <a href="https://giphy.com/gifs/roberto-carlos-shot-power-8Hxi8VpszCw5P9aokM" target="_blank" rel="noopener">via Giphy</a></div>
+    </div>
+    <div class="gif-card">
+      <img src="img/giphy2.gif" alt="Roberto Carlos celebration GIF" loading="lazy">
+      <div class="cap">🎉 The celebration · <a href="https://giphy.com/gifs/StarSixes-football-soccer-l0Exc0Z5pKtueJY4w" target="_blank" rel="noopener">via Giphy</a></div>
+    </div>
+    <div class="gif-card">
+      <img src="img/giphy4.gif" alt="Roberto Carlos Brazil free kick GIF" loading="lazy">
+      <div class="cap">🇧🇷 Brazil free-kick magic · <a href="https://gifer.com/en/9GsQ" target="_blank" rel="noopener">via Gifer</a></div>
+    </div>
+    <div class="gif-card">
+      <img src="img/roberto-carlos-goal.gif" alt="Roberto Carlos's 1997 free kick vs France GIF" loading="lazy">
+      <div class="cap">🐐 THE one. France, 1997.</div>
+    </div>
+    <div class="gif-card">
+      <img src="img/gif7.gif" alt="Roberto Carlos free kick for Brazil GIF" loading="lazy">
+      <div class="cap">😈 Free kick incoming, victims optional.</div>
+    </div>
+    <div class="gif-card">
+      <img src="img/gif4.gif" alt="Roberto Carlos on the ball for Brazil GIF" loading="lazy">
+      <div class="cap">🇧🇷 Seleção on the move.</div>
+    </div>
+    <div class="gif-card">
+      <img src="img/gif.gif" alt="Roberto Carlos goal GIF" loading="lazy">
+      <div class="cap">⚽ Just another screamer.</div>
+    </div>
+    <div class="gif-card">
+      <img src="img/gif3.gif" alt="Roberto Carlos attacking for Real Madrid GIF" loading="lazy">
+      <div class="cap">🤍 Bernabéu business.</div>
+    </div>
+    <div class="gif-card">
+      <img src="img/gif2-web.gif" alt="Roberto Carlos goal vs Tenerife GIF" loading="lazy">
+      <div class="cap">💥 vs Tenerife, just because.</div>
+    </div>
+    <div class="gif-card">
+      <img src="img/gif5.gif" alt="Roberto Carlos free kick for Fenerbahçe GIF" loading="lazy">
+      <div class="cap">💛💙 The Fenerbahçe cannon.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW DO YOU NOT KNOW HIM -->
+<section>
+  <h2 class="section-title"><span class="em">😤</span>HOW do you not know him?!</h2>
+  <div class="why-box" style="transform:rotate(1deg);background:var(--azul);">
+    Bestie. You're a <strong>Brazil fan</strong>. This is like loving music and not knowing Beyoncé. It's like <strong>being from the Bay</strong> and not knowing Too $hort or E-40. Roberto Carlos isn't an obscure deep cut. He's on every "greatest of all time" list, his free kick is in physics textbooks, and he wore <strong>#3</strong> at Real Madrid and the iconic <strong>#6</strong> for the Seleção for over a decade. Consider this your loving intervention. By the end of this page there are <em>no more excuses</em>. 💛💚
+  </div>
+</section>
+
+<!-- WHO -->
+<section>
+  <h2 class="section-title"><span class="em">⚽</span>So... who IS he?</h2>
+  <div class="who-wrap">
+    <div class="why-box">
+      Roberto Carlos da Silva Rocha (born April 10, 1973, in Garça, Brazil) is widely called <strong>the greatest left-back in football history</strong>. He played left <em>defence</em>, but spent his whole career sprinting up the wing like a winger, blasting free kicks, and terrifying goalkeepers. Short, absurdly muscular thighs, and a left foot that could launch a ball at <strong>~105 mph</strong>. If you love Brazil, he's non-negotiable. 🇧🇷
+    </div>
+    <div class="polaroid"><img src="img/rc-brazil6.jpg" alt="Roberto Carlos in the Brazil shirt"><div class="cap">o cara. 🇧🇷</div></div>
+    <div class="polaroid"><img src="img/rc-collage.jpg" alt="Roberto Carlos smiling in the Brazil shirt"><div class="cap">all smiles. 💛</div></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section>
+  <h2 class="section-title"><span class="em">📊</span>The numbers (a.k.a. it's your boy with the cups)</h2>
+  <p class="lead">Glittering doesn't quite cover it. Here's the trophy haul of a defender who scored like a midfielder. Casually. 🏆</p>
+  <div class="stats">
+    <div class="stat"><div class="big">125</div><div class="lbl">Brazil caps</div></div>
+    <div class="stat"><div class="big">11</div><div class="lbl">Goals for Brazil</div></div>
+    <div class="stat"><div class="big">1</div><div class="lbl">World Cup (2002)</div></div>
+    <div class="stat"><div class="big">3</div><div class="lbl">Champions Leagues</div></div>
+    <div class="stat"><div class="big">4</div><div class="lbl">La Liga titles</div></div>
+    <div class="stat"><div class="big">11</div><div class="lbl">Seasons at Real Madrid</div></div>
+    <div class="stat"><div class="big">~70</div><div class="lbl">Goals for Real Madrid</div></div>
+    <div class="stat"><div class="big">2</div><div class="lbl">Copa América titles</div></div>
+  </div>
+</section>
+
+<div class="gif-band">
+  <img src="img/giphy4.gif" alt="Roberto Carlos free kick" loading="lazy">
+  <div class="label"><span>That. Left. Foot. 🚀</span></div>
+  <a class="src" href="https://tenor.com/bDxFR.gif" target="_blank" rel="noopener">gif ↗</a>
+</div>
+
+<!-- WORLD CUP -->
+<section>
+  <h2 class="section-title"><span class="em">🏆</span>World Cup record</h2>
+  <p class="lead">Three World Cups, and he started nearly every minute of them. A runner-up medal, a winner's medal, and one of the great full-back partnerships ever (him + Cafu, bombing down both wings).</p>
+  <div class="wc-grid">
+    <div class="wc-card silver">
+      <div class="yr">1998</div><div class="host">France</div>
+      <div class="res">Runner-up 🥈</div>
+      <ul>
+        <li>Started <b>all 7</b> matches, every minute</li>
+        <li>An engine down the left for a team that reached the final</li>
+        <li>One of the <b>best left-backs of the whole tournament</b></li>
+        <li>Named to the <b>World Cup All-Star Team</b></li>
+        <li>Final lost <b>3–0</b> to France (the Ronaldo mystery night)</li>
+      </ul>
+    </div>
+    <div class="wc-card gold">
+      <div class="yr">2002</div><div class="host">South Korea / Japan</div>
+      <div class="res">CHAMPION 🥇</div>
+      <ul>
+        <li>Played <b>6</b> games (started the final)</li>
+        <li>Scored a <b>35-yard free-kick rocket vs China</b></li>
+        <li>Named to the <b>All-Star Team</b> again</li>
+      </ul>
+    </div>
+    <div class="wc-card">
+      <div class="yr">2006</div><div class="host">Germany</div>
+      <div class="res exit">Quarter-final</div>
+      <ul>
+        <li>Starter once more for the Seleção</li>
+        <li>His <b>third</b> consecutive World Cup</li>
+        <li>Brazil knocked out by France</li>
+      </ul>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="big">3</div><div class="lbl">World Cups</div></div>
+    <div class="stat"><div class="big">18</div><div class="lbl">WC appearances</div></div>
+    <div class="stat"><div class="big">2</div><div class="lbl">WC goals</div></div>
+    <div class="stat"><div class="big">2×</div><div class="lbl">WC All-Star team</div></div>
+  </div>
+  <div class="why-box" style="transform:rotate(-1deg);margin-top:24px;background:var(--verde);">
+    <strong>The 2002 run he won:</strong> Brazil beat Germany <strong>2–0</strong> in the Yokohama final, both goals by Ronaldo, his redemption after the heartbreak of '98. Ronaldo took the <strong>Golden Boot with 8 goals</strong> (the most at one World Cup since 1970), and it was Brazil's record <strong>5th</strong> title. Roberto Carlos was right there for all of it. 🇧🇷⭐⭐⭐⭐⭐
+  </div>
+  <figure class="snap" style="transform:rotate(-1deg);"><img src="img/_123063574_shutterstock_editorial_7430052x.jpg" alt="Roberto Carlos smiling with the 2002 World Cup trophy" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption class="cap">champion of the world. 2002. ⭐</figcaption></figure>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <h2 class="section-title"><span class="em">⏳</span>The career, fast</h2>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">1990–92</div><h3>União São João &amp; Atlético Mineiro</h3><p>A teenager from São Paulo state starts making noise in Brazilian football.</p></div>
+    <div class="tl-item"><div class="tl-year">1993–95</div><h3>Palmeiras</h3><p>Wins back-to-back Brazilian league titles (1993 &amp; 1994). A star is born.</p></div>
+    <div class="tl-item"><div class="tl-year">1995–96</div><h3>Inter Milan</h3><p>One season in Italy. Scores a 30-yard free kick <em>on his debut</em> (a sign of things to come), but it wasn't the right fit.</p></div>
+    <div class="tl-item"><div class="tl-year">1996–2007</div><h3>Real Madrid 👑</h3><p>The glory years. 584 appearances, ~70 goals (!), 4 La Ligas, 3 Champions Leagues, 2 Intercontinental Cups. A Galáctico and an icon in white.</p></div>
+    <div class="tl-item"><div class="tl-year">2002</div><h3>World Cup Champion 🏆</h3><p>Starts every game as Brazil wins the 2002 World Cup in Korea/Japan. The peak.</p></div>
+    <div class="tl-item"><div class="tl-year">2007 onward</div><h3>Fenerbahçe, Corinthians &amp; beyond</h3><p>Winds down a 20-year career, then moves into coaching. Legend status: permanent.</p></div>
+  </div>
+</section>
+
+<div class="gif-band">
+  <img src="img/giphy2.gif" alt="Roberto Carlos celebration" loading="lazy">
+  <div class="label"><span>It's your boy with the cups 🏆</span></div>
+  <a class="src" href="https://giphy.com/gifs/StarSixes-football-soccer-l0Exc0Z5pKtueJY4w" target="_blank" rel="noopener">gif ↗</a>
+</div>
+
+<!-- REAL MADRID -->
+<section>
+  <h2 class="section-title"><span class="em">👑</span>Los Blancos: the Madrid dues</h2>
+  <p class="lead">Eleven seasons in white. A founding <strong>Galáctico</strong>. For years, he and Italy's Paolo Maldini were simply <em>the two best left-backs on the planet</em>, except Roberto Carlos did it while basically playing as a winger. And get this: Madrid signed him from Inter in 1996 for around <strong>€3.5m</strong>. Highway robbery.</p>
+  <div class="stats">
+    <div class="stat"><div class="big">584</div><div class="lbl">Appearances</div></div>
+    <div class="stat"><div class="big">~70</div><div class="lbl">Goals (a DEFENDER!)</div></div>
+    <div class="stat"><div class="big">3</div><div class="lbl">Champions Leagues</div></div>
+    <div class="stat"><div class="big">4</div><div class="lbl">La Liga titles</div></div>
+    <div class="stat"><div class="big">2</div><div class="lbl">Intercontinental Cups</div></div>
+    <div class="stat"><div class="big">11</div><div class="lbl">Seasons in white</div></div>
+  </div>
+  <div class="freekick" style="background:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 20px,transparent 20px 40px),linear-gradient(135deg,#202a6e,#0a0a14);border-color:#fff;margin-top:24px;">
+    <h3 style="color:#fff;">⭐ The assist that made history</h3>
+    <p>Champions League final, 2002, Glasgow. On the stroke of half-time, Roberto Carlos lofted a high, looping ball down the left to the edge of the box, and <b>Zidane</b> met it with <em>that</em> left-footed volley into the top corner. It won Real Madrid <b>La Novena</b> (their 9th European Cup) and in 2020 France Football voted it the <b>most beautiful goal in Champions League history</b>.</p>
+    <div class="physics">
+      <b>In his own words 🎙️:</b> Roberto Carlos said the pass was "perfect, on the spot, just high enough, it landed on Zizou's left foot because he wouldn't be able to strike it with his right." A legend setting up a legend.
+    </div>
+  </div>
+  <p class="lead" style="margin-top:20px;">The trophy years in white: <b>La Liga</b> 1997, 2001, 2003, 2007 · <b>Champions League</b> 1998, 2000, 2002. He's in the Bernabéu pantheon forever, a bona fide Real Madrid legend. 🤍</p>
+</section>
+
+<!-- DANGER -->
+<section>
+  <h2 class="section-title"><span class="em">⚠️</span>Why opponents were terrified</h2>
+  <p class="lead">Most teams plan their set pieces to score. With Roberto Carlos lining up, the <em>other</em> team's whole plan was just to survive his. A free kick or corner in his range wasn't a chance. It was a threat the bench could feel.</p>
+  <div class="freekick" style="background:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 20px,transparent 20px 40px),linear-gradient(135deg,#4f1018,#0a0a14);border-color:#8f3b45;">
+    <h3 style="color:#fff;">🚨 The scouting report on a free kick from 30+ yards</h3>
+    <ul style="list-style:none;margin-top:6px;">
+      <li style="padding:5px 0;border-bottom:1px dotted rgba(255,255,255,.2);">💥 <b>Pace that's barely fair.</b> His strikes were clocked around <b>~105 mph</b>, and keepers literally couldn't react in time.</li>
+      <li style="padding:5px 0;border-bottom:1px dotted rgba(255,255,255,.2);">🧱 <b>The wall didn't help.</b> He bent it around the outside, or drove it so hard and flat it punched through gaps.</li>
+      <li style="padding:5px 0;border-bottom:1px dotted rgba(255,255,255,.2);">🧤 <b>Goalkeepers guessed and prayed.</b> Diving early was the only option, and often the wrong one.</li>
+      <li style="padding:5px 0;">📋 <b>Coaches game-planned for HIM.</b> Give away a foul anywhere near the box on the left, and you'd just handed the danger man a shot.</li>
+    </ul>
+    <div class="physics" style="border-left-color:var(--amarelo);">
+      <b>And on corners &amp; set-piece delivery:</b> that same cannon left foot whipped balls in so fast and flat that defenders couldn't clear them cleanly and keepers couldn't come collect. Whether he shot it or crossed it, a dead ball near Roberto Carlos was bad news. The fear was the point. 😱
+    </div>
+  </div>
+  <figure class="snap" style="transform:rotate(1deg);"><img src="img/Ge5ccWmnSxVDVLDCF5vaZG.jpg" alt="Roberto Carlos surging forward past an Argentina defender" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption class="cap">now try to stop him. 😮‍💨</figcaption></figure>
+</section>
+
+<div class="gif-band">
+  <img src="img/giphy1.gif" alt="Roberto Carlos free kick" loading="lazy">
+  <div class="label"><span>Messi would never 💅</span></div>
+  <a class="src" href="https://tenor.com/bBVMP.gif" target="_blank" rel="noopener">gif ↗</a>
+</div>
+
+<!-- FREE KICK -->
+<section>
+  <h2 class="section-title"><span class="em">🚀</span>THE free kick</h2>
+  <p class="lead">If your friend only learns one thing, make it this. France, 1997, the Tournoi de France in Lyon. Roberto Carlos lines up a free kick from <strong>35 metres out</strong>...</p>
+  <div class="freekick">
+    <h3>The goal that broke physics</h3>
+    <p>He smashed it with the <b>outside of his left foot</b>, sending the ball way wide of the goal, so far that a ballboy behind the post ducked. Then, at the last second, it violently bent back and snuck inside the post. The French keeper, Fabien Barthez, didn't even move.</p>
+    <figure class="snap" style="transform:rotate(1deg);"><img src="img/roberto Carlos football.jpg" alt="Roberto Carlos striking a free kick with his left foot" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption class="cap">the windup. 🚀</figcaption></figure>
+    <div class="fk-pitch">
+      <span class="goal">🥅</span>
+      <span class="wall">🧍🧍🧍</span>
+      <span class="ball">⚽</span>
+      <span class="gol">GOOOL!</span>
+    </div>
+    <div class="physics">
+      <b>The science 🤓:</b> In 2010, French physicists at École Polytechnique <a href="https://iopscience.iop.org/article/10.1088/1367-2630/12/9/093004" target="_blank" rel="noopener" style="color:var(--amarelo);">studied it</a> and concluded it was <em>no fluke</em>. By striking it hard with heavy spin, the ball followed what they called a <b>"spinning ball spiral"</b>: as it slowed down through the air, the spin took over and the curve got tighter and tighter, like a snail shell. Most curling free kicks happen over 20–25m. Carlos did it from 35m, which is why it looks impossible. <a href="https://iopscience.iop.org/article/10.1088/1367-2630/12/9/093004" target="_blank" rel="noopener" style="color:var(--amarelo);font-weight:bold;">Read the paper ↗</a> (Dupeux, Le Goff, Quéré &amp; Clanet, <em>New Journal of Physics</em>, 2010).
+    </div>
+    <div class="physics" style="border-left-color:var(--amarelo);">
+      <b>Why it bends so late 🌀:</b> a spinning ball gets shoved sideways by the <b>Magnus effect</b>. The spin drags air faster past one side, pressure drops there, and the ball veers toward the low-pressure side. That push depends on spin times speed. Over the flight, drag bleeds off the <em>speed</em> fast while the <em>spin</em> barely fades, so the turning radius (roughly speed ÷ spin) keeps shrinking. Early on the path looks nearly straight. As it slows, the curve tightens into a spiral and snaps in. The 35m wasn't a flex, it was the requirement: only from that far does the ball have room to slow into the tight part of the spiral before it reaches the net. From 20m it arrives still in the gentle phase, a pretty banana but no vicious hook.
+    </div>
+    <figure style="margin:18px 0 0;">
+      <svg viewBox="0 0 720 360" role="img" aria-label="Top-down diagram comparing a short-range curling free kick, which traces one clean arc, with Roberto Carlos's 35-metre shot, which swerves wide as if missing and then hooks back into the goal in a tightening spiral." style="width:100%;height:auto;display:block;border:3px solid var(--amarelo);border-radius:12px;background:linear-gradient(180deg,#0b7a30,#075322);">
+        <!-- mowing stripes -->
+        <g opacity="0.06" fill="#ffffff">
+          <rect x="10" y="0" width="80" height="360"/>
+          <rect x="170" y="0" width="80" height="360"/>
+          <rect x="330" y="0" width="80" height="360"/>
+          <rect x="490" y="0" width="80" height="360"/>
+          <rect x="650" y="0" width="70" height="360"/>
+        </g>
+        <!-- goal (top centre) -->
+        <g stroke="#ffffff" stroke-width="4" fill="none">
+          <line x1="300" y1="26" x2="440" y2="26"/>
+          <line x1="300" y1="26" x2="300" y2="56"/>
+          <line x1="440" y1="26" x2="440" y2="56"/>
+        </g>
+        <g stroke="#ffffff" stroke-width="1" opacity="0.5">
+          <line x1="320" y1="26" x2="320" y2="56"/><line x1="340" y1="26" x2="340" y2="56"/>
+          <line x1="360" y1="26" x2="360" y2="56"/><line x1="380" y1="26" x2="380" y2="56"/>
+          <line x1="400" y1="26" x2="400" y2="56"/><line x1="420" y1="26" x2="420" y2="56"/>
+        </g>
+        <!-- the wall -->
+        <text x="214" y="258" font-size="22">🧍🧍🧍</text>
+        <!-- free-kick spot -->
+        <circle cx="150" cy="312" r="5" fill="#fff"/>
+        <text x="150" y="318" font-size="20" text-anchor="middle">⚽</text>
+        <text x="150" y="345" font-size="14" fill="#ffdf00" font-weight="bold" text-anchor="middle">free kick · 35m</text>
+        <!-- normal short curl: one clean arc -->
+        <path d="M150,312 Q300,150 367,54" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="7 6" opacity="0.85"/>
+        <text x="250" y="138" font-size="13" fill="#ffffff" opacity="0.9">a normal curl: one clean arc</text>
+        <!-- Carlos: the spiral (wide, then hooks back in) -->
+        <path d="M150,312 C430,250 660,212 622,120 C596,58 470,40 372,54" fill="none" stroke="#ff2d6f" stroke-width="5" stroke-linecap="round"/>
+        <text x="556" y="196" font-size="13" fill="#ff2d6f" font-weight="bold">looks like it's missing… 👀</text>
+        <text x="566" y="232" font-size="18">🙇</text>
+        <text x="305" y="88" font-size="16" fill="#ff2d6f" font-weight="bold">GOL!</text>
+        <!-- legend -->
+        <g font-size="12" fill="#eaf3ff">
+          <line x1="30" y1="34" x2="64" y2="34" stroke="#ffffff" stroke-width="3" stroke-dasharray="7 6"/>
+          <text x="70" y="38">≈20m: a normal curl</text>
+          <line x1="30" y1="56" x2="64" y2="56" stroke="#ff2d6f" stroke-width="5"/>
+          <text x="70" y="60">35m spiral (Carlos)</text>
+        </g>
+      </svg>
+      <figcaption style="color:#cdd7f5;font-size:.82rem;margin-top:8px;text-align:center;">Same kicker, same goal, different distance. The pink path is the "spinning ball spiral": wide enough that a ballboy ducked, then it hooks home. Turning radius ≈ speed ÷ spin, and drag keeps shrinking the speed.</figcaption>
+    </figure>
+    <p style="margin-top:14px;font-weight:bold;color:var(--amarelo);">…and he was a LEFT BACK. A defender. Doing this. Messi would never. 💅 (respectfully.)</p>
+  </div>
+</section>
+
+<!-- THIGHS -->
+<section>
+  <h2 class="section-title"><span class="em">🦵</span>Thigh Appreciation Station</h2>
+  <div class="sq-banner" style="background:var(--hot);color:#fff;border-color:#fff;">★ scientifically, those are enormous ★</div>
+  <p class="lead">Look, we did the polite thing and led with the trophies. But you cannot launch a ball at <strong>105 mph</strong> from a standing start with normal human legs. Physicists studied the free kick. Nobody's been brave enough to study these. Each thigh allegedly has its own postal code, its own weather system, and a restraining order from at least one goalkeeper. Please observe the engine room:</p>
+  <div class="thighs-grid">
+    <figure><img src="img/thighs2.jpg" alt="Roberto Carlos striking a ball for Inter" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>even the ball looked nervous. 😬</figcaption></figure>
+    <figure><img src="img/thighs3.jpeg" alt="Roberto Carlos winding up a shot for Brazil" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>powered by pure quadricep. ⚡</figcaption></figure>
+    <figure><img src="img/thighs4.jpg" alt="Roberto Carlos in a training stance" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>leg day was every day. 💪</figcaption></figure>
+    <figure><img src="img/thighs5.jpg" alt="Roberto Carlos sliding into a challenge" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>physics class, live. 🧪</figcaption></figure>
+    <figure><img src="img/thighs6.jpg" alt="Roberto Carlos unleashing a volley" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>the 105 mph starts here. 🚀</figcaption></figure>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote">
+  <blockquote>"Roberto Carlos can cover the entire left wing all on his own."</blockquote>
+  <cite>— Vicente del Bosque, his manager at Real Madrid</cite>
+</div>
+
+<!-- WHAT THEY SAID -->
+<section>
+  <h2 class="section-title"><span class="em">🗣️</span>Don't take my word for it</h2>
+  <p class="lead">Here's what the people who actually had to share a pitch with him (or try to stop him) said:</p>
+  <div class="quotes-grid">
+    <div class="qcard">
+      <p>"I played in a friendly in Japan against him when he was a young lad. I remember this kid running up and down the left wing. It was unbelievable. I said, 'We've got to find out who that kid is, let's try and buy him.' It turned out his name was Roberto Carlos. They said, 'He's not for sale.'"</p>
+      <cite>— Gary Lineker, England striker</cite>
+    </div>
+    <div class="qcard">
+      <p>"His left leg seems to be made of iron. He had a fantastic shot, but thankfully I never stood in the wall when he took a free kick. If one of Carlos's shots hit you on the head it could quite easily cause physical damage!"</p>
+      <cite>— Jaap Stam, Manchester United defender</cite>
+    </div>
+    <div class="qcard">
+      <p>"When I first met him at Inter, I thought wow. Firstly, I couldn't believe how big his legs were, you can see that in the way he strikes a ball. He had great pace up and down the line, he could tackle, score, and he was an incredible player."</p>
+      <cite>— Paul Ince, his Inter Milan teammate</cite>
+    </div>
+    <div class="qcard">
+      <p>"Roberto Carlos is amazing. He's a brilliant defender, but his biggest strength is his ability to get from box to box all the time. He's so quick and strong that he's always making you defend. And he can be lethal from set pieces too."</p>
+      <cite>— Ryan Giggs, Manchester United winger</cite>
+    </div>
+    <div class="qcard">
+      <p>"Like Cafu, he made people rethink the role of a full-back in a team. Great on the ball, made good runs, but also great dead-ball delivery. Fantastic."</p>
+      <cite>— Michael Owen, England striker</cite>
+    </div>
+    <div class="qcard">
+      <p>"He's a fantastic player, with amazing skill, and does things at left-back that no other player in that position would contemplate."</p>
+      <cite>— Henrik Larsson, Sweden striker</cite>
+    </div>
+    <div class="qcard">
+      <p>"As well as being one of the best free-kick takers ever, he is also one of the finest left-backs ever. So important to all of Real Madrid's Champions League wins."</p>
+      <cite>— Ronaldinho, his Brazil teammate</cite>
+    </div>
+  </div>
+  <p class="lead" style="font-size:.82rem;color:#9aa6d6;margin-top:18px;margin-bottom:0;">Quotes compiled via <a href="https://arjyomitra94.wordpress.com/2016/02/17/quotes-on-roberto-carlos-and-cafu/" target="_blank" rel="noopener" style="color:#9aa6d6;">Wet grass, white posts, bulging nets</a>.</p>
+</section>
+
+<!-- SIDE QUEST -->
+<section>
+  <h2 class="section-title"><span class="em">🗺️</span>Side Quest: the legends he played with</h2>
+  <div class="sq-banner">★ Brazil AND Real Madrid royalty 👀 ★</div>
+  <p class="lead">Roberto Carlos didn't do it alone. For <strong>Brazil</strong> and for <strong>Real Madrid</strong> he lined up next to some of the greatest players football has ever produced. You take one look at this list and go: <em>yeah, that's not fair.</em> Meet a few of them:</p>
+  <div class="cards">
+
+    <div class="card c-r9">
+      <img class="photo" src="img/ronaldo-fb1.webp" alt="Ronaldo celebrating for Brazil" loading="lazy" onerror="this.style.display='none'">
+      <div class="top">
+        <div class="pos">Striker</div>
+        <div class="name">Ronaldo</div>
+        <div class="nick">"O Fenômeno" (R9)</div>
+      </div>
+      <div class="body">
+        Possibly the greatest pure striker ever. A force of nature before injuries, and unstoppable after.
+        <ul>
+          <li><b>2×</b> Ballon d'Or (1997, 2002)</li>
+          <li><b>2×</b> World Cup winner (1994, 2002)</li>
+          <li><b>62</b> goals in 98 games for Brazil</li>
+          <li>Won the <b>2002 Golden Boot</b> with 8 goals</li>
+        </ul>
+        <button class="watch-btn" data-vid="207ePL8bXoU" data-title="Ronaldo (R9) — best goals compilation">▶ Watch R9's best goals</button>
+      </div>
+    </div>
+
+    <div class="card c-dinho">
+      <img class="photo" src="img/ronaldinho.jpg.webp" alt="Ronaldinho celebrating for Brazil" loading="lazy" onerror="this.style.display='none'">
+      <div class="top">
+        <div class="pos">Attacking mid / forward</div>
+        <div class="name">Ronaldinho</div>
+        <div class="nick">"Gaúcho," pure joy</div>
+      </div>
+      <div class="body">
+        The most fun footballer of his generation. Tricks, flicks, and a permanent smile. Made football feel like a playground.
+        <ul>
+          <li><b>1×</b> Ballon d'Or (2005)</li>
+          <li><b>2×</b> FIFA World Player of the Year</li>
+          <li><b>2002</b> World Cup winner</li>
+          <li><b>33</b> goals in 97 games for Brazil</li>
+        </ul>
+        <button class="watch-btn" data-vid="wkHC7W2xYIY" data-title="Ronaldinho — 100+ wow skills">▶ Watch the magic</button>
+      </div>
+    </div>
+
+    <div class="card c-riva">
+      <img class="photo" src="img/rivaldo-face.jpg" alt="Rivaldo celebrating for Brazil" loading="lazy" onerror="this.style.display='none'">
+      <div class="top">
+        <div class="pos">Forward / playmaker</div>
+        <div class="name">Rivaldo</div>
+        <div class="nick">the third "R"</div>
+      </div>
+      <div class="body">
+        Left foot of a magician. With Ronaldo and Ronaldinho he formed the famous <b>"Three R's"</b> attack of 2002.
+        <ul>
+          <li><b>1×</b> Ballon d'Or (1999)</li>
+          <li><b>2002</b> World Cup winner</li>
+          <li>Named to the <b>2002 World Cup All-Star team</b></li>
+          <li>Master of the bicycle kick &amp; the impossible goal</li>
+        </ul>
+        <button class="watch-btn" data-vid="gbpCM1-SaHY" data-title="Rivaldo — Top 10 goals">▶ Watch Rivaldo's top 10</button>
+      </div>
+    </div>
+
+    <div class="card c-cafu">
+      <img class="photo" src="img/Cafu-CA.jpg" alt="Cafu celebrating for Brazil" loading="lazy" onerror="this.style.display='none'">
+      <div class="top">
+        <div class="pos">Right-back</div>
+        <div class="name">Cafu</div>
+        <div class="nick">"O Pendolino," the express train</div>
+      </div>
+      <div class="body">
+        Roberto Carlos's partner on the <em>other</em> flank. Together they were the most attacking full-back pairing on earth.
+        <ul>
+          <li>Only player to appear in <b>3 straight World Cup finals</b></li>
+          <li><b>2×</b> World Cup winner (1994, 2002)</li>
+          <li><b>Captain</b> who lifted the 2002 trophy</li>
+          <li>Most-capped Brazilian outfield player ever (142)</li>
+        </ul>
+        <button class="watch-btn" data-vid="xEZo7llPz1M" data-title="Cafu — career highlights, GOAT right-back">▶ Watch Cafu's highlights</button>
+      </div>
+    </div>
+
+    <div class="card c-raul">
+      <img class="photo" src="img/19298.avif" alt="Raúl playing for Real Madrid" loading="lazy" onerror="this.style.display='none'">
+      <div class="top">
+        <div class="pos">Forward / captain</div>
+        <div class="name">Raúl</div>
+        <div class="nick">"El Capitán," the Bernabéu's soul</div>
+      </div>
+      <div class="body">
+        Real Madrid's icon and longtime captain through the Galáctico years, right alongside Roberto Carlos. Ice in his veins in the box.
+        <ul>
+          <li>Real Madrid's <b>all-time top scorer</b> for years (323)</li>
+          <li><b>6×</b> La Liga, <b>3×</b> Champions League</li>
+          <li>Spain's <b>record scorer</b> of his era (44)</li>
+          <li>The armband, the soul of the Bernabéu</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card c-zidane">
+      <img class="photo" src="img/zidane.jpg" alt="Zidane celebrating with Roberto Carlos at Real Madrid" loading="lazy" onerror="this.style.display='none'">
+      <div class="top">
+        <div class="pos">Attacking midfield</div>
+        <div class="name">Zidane</div>
+        <div class="nick">"Zizou," pure elegance</div>
+      </div>
+      <div class="body">
+        The most graceful midfielder of his era and a Galáctico teammate. Roberto Carlos's looping cross set up <em>that</em> volley in the 2002 final.
+        <ul>
+          <li><b>1998</b> World Cup winner with France</li>
+          <li><b>1998</b> Ballon d'Or, 3× FIFA World Player</li>
+          <li><b>2002</b> Champions League (the volley)</li>
+          <li>Euro <b>2000</b> winner</li>
+        </ul>
+        <button class="watch-btn" data-vid="WLgMRyRjVrI" data-title="Zidane — 2002 Champions League final volley (assist: Roberto Carlos)">▶ Watch that 2002 volley</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="gif-band">
+  <img src="img/giphy3.gif" alt="Roberto Carlos bomba" loading="lazy">
+  <div class="label"><span>This man is DANGEROUS 👀</span></div>
+  <a class="src" href="https://giphy.com/gifs/Palmeiras-palmeiras-roberto-carlos-memoriaalviverde-tsSjmMpr9xqg6XxS8N" target="_blank" rel="noopener">gif ↗</a>
+</div>
+
+<!-- TRIVIA -->
+<section>
+  <h2 class="section-title"><span class="em">💡</span>Did you know?</h2>
+  <div class="why-box" style="background:var(--azul);transform:rotate(-1deg);margin-bottom:22px;">
+    <strong>For ~10 years, if Ronaldo or Ronaldinho scored for Brazil, he was almost certainly on the pitch.</strong> From roughly 1997 to 2006, Roberto Carlos was a near-permanent starter for the Seleção (125 caps in total), bombing down the left while the attackers did damage. So while he wasn't there for their <em>club</em> goals, at <strong>national-team level</strong> he was on the field for the overwhelming majority of the goals both legends scored. That golden generation was tight-knit. 🇧🇷
+  </div>
+  <div class="why-box" style="background:var(--hot);transform:rotate(1deg);">
+    <strong>Wait, was his number #3 or #6?</strong> Both! He wore <strong>#3</strong> at Real Madrid, but for Brazil he wore <strong>#6</strong>. Here's the fun part: in the traditional <em>Brazilian</em> shirt-numbering system, the full-backs aren't 2 and 3. They're <strong>#2 (right-back)</strong> and <strong>#6 (left-back)</strong>, with the center-backs taking 3 and 4. So the iconic "6" on his yellow shirt is just Brazil doing things the Brazilian way. (Marcelo later inherited the same #6.) ⚽
+  </div>
+  <figure class="snap" style="transform:rotate(-1deg);"><img src="img/RC-MK.jpeg" alt="The R. Carlos number 6 on the back of the Brazil shirt" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption class="cap">the famous 6. 🇧🇷</figcaption></figure>
+</section>
+
+<!-- ORIGIN STORY -->
+<section>
+  <h2 class="section-title"><span class="em">🎽</span>Why I switched between 3 &amp; 6</h2>
+  <p class="lead">Okay, personal note from me (the friend forcing you to learn this 💛): I wore <strong>#3</strong> and <strong>#6</strong> across my playing days, and it was never random. Both are classic defender numbers, worn by people I idolized, and Roberto Carlos ties the whole thing together, because <em>he wore both too</em>.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div class="card" style="box-shadow:6px 6px 0 var(--verde);">
+      <div class="top" style="background:linear-gradient(135deg,#009b3a,#00351b);text-align:center;">
+        <div style="font-size:4rem;font-weight:900;color:#fff;line-height:1;-webkit-text-stroke:3px var(--ink);">3</div>
+        <div class="nick">the number</div>
+      </div>
+      <div class="body">
+        <ul>
+          <li><b>Roberto Carlos</b>, his #3 at Real Madrid</li>
+          <li><b>Christie Rampone</b> (Pearce), USWNT #3 since 1997, Hall of Famer &amp; ironwoman defender</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="box-shadow:6px 6px 0 var(--hot);">
+      <div class="top" style="background:linear-gradient(135deg,#ffdf00,#b89e00);text-align:center;">
+        <div style="font-size:4rem;font-weight:900;color:var(--ink);line-height:1;-webkit-text-stroke:3px #fff;">6</div>
+        <div class="nick" style="color:var(--ink);">the number</div>
+      </div>
+      <div class="body">
+        <ul>
+          <li><b>Roberto Carlos</b>, his #6 for Brazil (the Brazilian left-back number!)</li>
+          <li><b>Brandi Chastain</b>, USWNT #6, scored <em>the</em> World Cup-winning penalty in 1999</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="why-box" style="margin-top:22px;transform:rotate(-1deg);background:var(--azul);">
+    So when you see me in a <strong>3</strong> or a <strong>6</strong>, that's the lineage: a Brazilian rocket-legged genius and two USWNT icons who changed the game. 🇧🇷🇺🇸
+  </div>
+</section>
+
+<!-- NOW -->
+<section>
+  <h2 class="section-title"><span class="em">📍</span>Where is he now?</h2>
+  <div class="who-wrap">
+    <div class="why-box" style="background:var(--azul);">
+      He hung up the boots in 2015, but he never really left the game. These days Roberto Carlos is a <strong>global ambassador for Real Madrid</strong>, carrying the club's history around the world. Through the 2026 World Cup he's been on punditry duty too, breaking down Brazil's run and backing Carlo Ancelotti's side to go deep. And since 2019 he's been the global ambassador for <strong>Football for Friendship</strong>, an international kids' programme that uses football to teach cooperation, respect, and equality across cultures. Still bending the game, just from a different angle now. 🤍
+    </div>
+    <div class="polaroid"><img src="img/robertonow.jpeg" alt="Roberto Carlos today in a Real Madrid legends shirt"><div class="cap">the ambassador era. 🤍</div></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section>
+  <h2 class="section-title"><span class="em">📸</span>The scrapbook</h2>
+  <p class="lead">A few more of him just being him. Scroll sideways. 👉</p>
+  <div class="photo-strip">
+    <figure><img src="img/e82f67ef3bbd1045b45c99097b70246e10b965ad.jpg.webp" alt="Roberto Carlos celebrating for Real Madrid" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Madrid, all in white. 🤍</figcaption></figure>
+    <figure><img src="img/1202816436288.jpg" alt="Roberto Carlos celebrating with arms outstretched for Real Madrid" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>another one. obviously. ⚽</figcaption></figure>
+    <figure><img src="img/hq720.jpg" alt="Roberto Carlos in a dramatic split pose" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>literally on fire. 🔥</figcaption></figure>
+    <figure><img src="img/Roberto-Carlos-Copa-America-1999.jpg" alt="Roberto Carlos celebrating with Brazil teammates at Copa América 1999" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>Copa América, 1999. 🏆</figcaption></figure>
+    <figure><img src="img/robertoronaldinho.webp" alt="Roberto Carlos at a legends match" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>still showing up for the legends games. 💛</figcaption></figure>
+    <figure><img src="img/ehthxicemq66jywou9qy.avif" alt="Roberto Carlos laughing" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>happiest man in football. 😄</figcaption></figure>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <h2 class="section-title"><span class="em">🎓</span>Education Station, bestie</h2>
+  <p class="lead">Welcome to the Education Station. Ten questions, no pressure. (There is pressure.) 📝</p>
+  <div class="quiz">
+    <h3>Roberto Carlos: Crash Course Final Exam</h3>
+
+    <div class="q" data-answer="1">
+      <p>1. What position did Roberto Carlos play?</p>
+      <button>Goalkeeper</button>
+      <button>Left-back (but plays like a winger)</button>
+      <button>Striker</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="q" data-answer="2">
+      <p>2. From how far out did he score THAT free kick vs France?</p>
+      <button>10 metres</button>
+      <button>20 metres</button>
+      <button>35 metres</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="q" data-answer="0">
+      <p>3. Which World Cup did he win with Brazil?</p>
+      <button>2002</button>
+      <button>2006</button>
+      <button>2014</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="q" data-answer="2">
+      <p>4. Which club defined his career?</p>
+      <button>Barcelona</button>
+      <button>Manchester United</button>
+      <button>Real Madrid</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="q" data-answer="1">
+      <p>5. What number did he wear for the Seleção (Brazil)?</p>
+      <button>#3</button>
+      <button>#6</button>
+      <button>#9</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="q" data-answer="2">
+      <p>6. How fast was that left foot clocked?</p>
+      <button>~65 mph</button>
+      <button>~85 mph</button>
+      <button>~105 mph</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="q" data-answer="0">
+      <p>7. Who was his full-back partner bombing down the other flank for Brazil?</p>
+      <button>Cafu</button>
+      <button>Paolo Maldini</button>
+      <button>Dani Alves</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="q" data-answer="1">
+      <p>8. What did physicists name the path of his France free kick?</p>
+      <button>The knuckleball drop</button>
+      <button>The spinning ball spiral</button>
+      <button>The banana arc</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="q" data-answer="1">
+      <p>9. His 2002 Champions League final assist set up whose famous volley?</p>
+      <button>Raúl</button>
+      <button>Zidane</button>
+      <button>Luís Figo</button>
+      <div class="fb"></div>
+    </div>
+
+    <div class="q" data-answer="2">
+      <p>10. How many World Cups did he play in for Brazil?</p>
+      <button>One</button>
+      <button>Two</button>
+      <button>Three (1998, 2002, 2006)</button>
+      <div class="fb"></div>
+    </div>
+
+    <div id="quiz-progress" style="margin-top:18px;font-size:.9rem;color:#cdd7f5;text-align:center;">Answer all 10 to get your verdict from Thierry Henry… <span id="qp-count" style="color:var(--amarelo);font-weight:bold;">0/10</span></div>
+
+    <div id="quiz-result" style="display:none;margin-top:18px;text-align:center;">
+      <div id="result-score" style="font-size:1.6rem;font-weight:900;color:var(--amarelo);text-transform:uppercase;letter-spacing:1px;"></div>
+      <div id="result-title" style="font-size:1.1rem;font-weight:bold;color:#fff;margin:4px 0 14px;"></div>
+      <img id="result-gif" alt="Thierry Henry reacts to your score" style="max-width:380px;width:100%;display:block;margin:0 auto;border:4px solid var(--amarelo);border-radius:12px;box-shadow:6px 6px 0 var(--hot);">
+      <div id="result-msg" style="max-width:520px;margin:14px auto 0;color:#dfe7ff;font-size:1rem;"></div>
+      <button id="quiz-retry" style="margin-top:16px;background:var(--verde);color:#fff;border:2px solid #fff;border-radius:24px;padding:9px 20px;font-family:inherit;font-weight:bold;cursor:pointer;">↻ Try again</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p style="font-size:1.2rem;color:var(--amarelo);font-weight:bold;">Now you know. Welcome to the fan club. <span class="heart">♥</span></p>
+  <p style="color:#cdd7f5;margin-top:6px;">Go watch the 1997 free kick on YouTube right now. Seriously.</p>
+  <a class="pill" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">▲ back to the top</a>
+  <p class="sources">
+    Sources &amp; further reading:
+    <a href="https://en.wikipedia.org/wiki/Roberto_Carlos">Roberto Carlos (Wikipedia)</a> ·
+    <a href="https://www.realmadrid.com/en-US/the-club/history/football-legends/roberto-carlos-da-silva">Real Madrid CF</a> ·
+    <a href="https://iopscience.iop.org/article/10.1088/1367-2630/12/9/093004">The peer-reviewed paper: Dupeux, Le Goff, Quéré &amp; Clanet, "The spinning ball spiral," New Journal of Physics 12 (2010) 093004</a> ·
+    <a href="https://phys.org/news/2010-09-carlos-free-fluke-french-physicists.html">Phys.org: the free-kick physics (plain-English summary)</a> ·
+    <a href="https://www.espn.com/soccer/story/_/id/37475858/physics-impossible-strike">ESPN: the impossible strike</a> ·
+    <a href="https://en.wikipedia.org/wiki/Ronaldo_(Brazilian_footballer)">Ronaldo</a> ·
+    <a href="https://en.wikipedia.org/wiki/Ronaldinho">Ronaldinho</a>.
+    <br>Made with love for a friend who's about to fall down a very fun rabbit hole. 🇧🇷
+  </p>
+</footer>
+
+<script>
+  // ---- single video player: only one plays at a time ----
+  (function(){
+    var player=document.getElementById('player');
+    var np=document.getElementById('np');
+    var yt=document.getElementById('ytlink');
+    function playClip(id,title,btn){
+      player.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&mute=1&rel=0';
+      if(np) np.textContent=title;
+      if(yt) yt.href='https://www.youtube.com/watch?v='+id;
+      document.querySelectorAll('.chip.live').forEach(function(c){c.classList.remove('live');});
+      if(btn && btn.classList.contains('chip')) btn.classList.add('live');
+      document.getElementById('theater').scrollIntoView({behavior:'smooth'});
+    }
+    document.querySelectorAll('[data-vid]').forEach(function(b){
+      b.addEventListener('click',function(){ playClip(b.dataset.vid,b.dataset.title,b); });
+    });
+  })();
+
+  // ---- if any GIF fails to load, hide its card/band so nothing looks broken ----
+  document.querySelectorAll('.gif-card img, .gif-band img:not(.keep)').forEach(function(img){
+    img.addEventListener('error',function(){
+      var box=img.closest('.gif-card, .gif-band');
+      if(box) box.style.display='none';
+    });
+  });
+
+  (function(){
+    var qs = document.querySelectorAll('.q');
+    var total = qs.length;
+    var correct = 0, answered = 0;
+    var countEl = document.getElementById('qp-count');
+    var progEl  = document.getElementById('quiz-progress');
+    var resEl   = document.getElementById('quiz-result');
+
+    // Henry verdicts, best to worst. First tier whose `min` the score meets wins.
+    var tiers = [
+      {min:10, gif:'img/Jz1QYn.gif',       score:'PERFECT · ICON BEHAVIOR 🐐', title:"Ten for ten. You didn't pass, you bent it round the wall.", msg:"A flawless run. Henry is on his feet screaming. Welcome to the fan club, you've earned every point."},
+      {min:5, gif:'img/ha-smirk.gif',     score:'Respect. 😎',        title:"Smooth. You clearly did the watching.",       msg:"Solid score. Henry gives you the slow, approving smirk. So close to a perfect ten, run it back."},
+      {min:0, gif:'img/giphy-thierry.gif', score:'do the reading, bestie 😬', title:"Henry is looking at you the way he looks at Alexi Lalas.", msg:"The man bends physics from 35 metres. The least you can do is remember it. Scroll back up and try again."}
+    ];
+
+    function showResult(){
+      var tier = tiers.find(function(t){ return correct >= t.min; });
+      document.getElementById('result-score').textContent = correct + '/' + total + ' · ' + tier.score;
+      document.getElementById('result-title').textContent = tier.title;
+      var gif = document.getElementById('result-gif');
+      gif.src = tier.gif;
+      document.getElementById('result-msg').textContent = tier.msg;
+      if(progEl) progEl.style.display = 'none';
+      resEl.style.display = 'block';
+      resEl.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+
+    qs.forEach(function(q){
+      var answer = parseInt(q.dataset.answer,10);
+      var btns = q.querySelectorAll('button');
+      var fb = q.querySelector('.fb');
+      btns.forEach(function(b,i){
+        b.addEventListener('click',function(){
+          if(q.dataset.done) return;
+          q.dataset.done="1";
+          answered++;
+          if(i===answer){ correct++; b.classList.add('right'); fb.textContent="✓ Correct! You're learning."; }
+          else{ b.classList.add('wrong'); btns[answer].classList.add('right'); fb.textContent="✗ Nope, the green one's right. Tell your friend."; }
+          if(countEl) countEl.textContent = answered + '/' + total;
+          if(answered === total) showResult();
+        });
+      });
+    });
+
+    var retry = document.getElementById('quiz-retry');
+    if(retry) retry.addEventListener('click',function(){
+      correct = 0; answered = 0;
+      if(countEl) countEl.textContent = '0/' + total;
+      if(progEl) progEl.style.display = '';
+      resEl.style.display = 'none';
+      qs.forEach(function(q){
+        q.dataset.done = "";
+        q.querySelector('.fb').textContent = "";
+        q.querySelectorAll('button').forEach(function(b){ b.classList.remove('right','wrong'); });
+      });
+      document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  })();
+</script>
+
+</body>
+</html>
