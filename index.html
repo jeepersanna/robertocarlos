@@ -216,11 +216,19 @@
   .snap{max-width:440px;margin:22px auto 0;background:#fff;padding:10px 10px 0;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--hot);transform:rotate(-1deg);}
   .snap img{width:100%;display:block;}
   .snap .cap{color:var(--ink);font-weight:bold;text-align:center;padding:9px 4px;font-size:.9rem;}
-  .thighs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-top:20px;}
-  .thighs-grid figure{margin:0;background:#fff;border:3px solid var(--ink);border-radius:10px;overflow:hidden;box-shadow:5px 5px 0 var(--hot);transition:transform .15s ease;}
+  .thighs-grid{display:flex;gap:16px;overflow-x:auto;padding:8px 2px 18px;margin-top:20px;scroll-snap-type:x mandatory;}
+  .thighs-grid figure{margin:0;flex:0 0 auto;width:320px;background:#fff;border:3px solid var(--ink);border-radius:10px;overflow:hidden;box-shadow:6px 6px 0 var(--hot);transition:transform .15s ease;scroll-snap-align:start;}
   .thighs-grid figure:hover{transform:translateY(-5px) rotate(-1deg);}
-  .thighs-grid img{width:100%;height:185px;object-fit:cover;display:block;border-bottom:3px solid var(--ink);}
-  .thighs-grid figcaption{color:var(--ink);font-weight:bold;font-size:.82rem;padding:9px 10px;text-align:center;}
+  .thighs-grid img{width:100%;height:360px;object-fit:cover;display:block;border-bottom:3px solid var(--ink);}
+  .thighs-grid figcaption{color:var(--ink);font-weight:bold;font-size:.9rem;padding:11px 12px;text-align:center;}
+  @media(max-width:520px){.thighs-grid figure{width:78vw;}.thighs-grid img{height:300px;}}
+  .thighs-grid::-webkit-scrollbar{height:12px;}
+  .thighs-grid::-webkit-scrollbar-track{background:rgba(0,0,0,.3);border-radius:8px;}
+  .thighs-grid::-webkit-scrollbar-thumb{background:var(--amarelo);border-radius:8px;border:2px solid var(--ink);}
+  .thighs-grid{scrollbar-color:var(--amarelo) rgba(0,0,0,.3);scrollbar-width:auto;}
+  .scroll-hint{display:inline-flex;align-items:center;gap:8px;color:var(--amarelo);font-weight:bold;font-size:.92rem;margin:2px 0 0;}
+  .scroll-hint .arrow{display:inline-block;animation:nudge 1.2s ease-in-out infinite;}
+  @keyframes nudge{0%,100%{transform:translateX(0);}50%{transform:translateX(9px);}}
   .photo-strip{display:flex;gap:14px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory;}
   .photo-strip figure{margin:0;flex:0 0 auto;width:260px;background:#fff;padding:8px 8px 0;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--verde);scroll-snap-align:start;}
   .photo-strip img{width:100%;height:200px;object-fit:cover;display:block;}
@@ -617,6 +625,7 @@
   <h2 class="section-title"><span class="em">🦵</span>Thigh Appreciation Station</h2>
   <div class="sq-banner" style="background:var(--hot);color:#fff;border-color:#fff;">★ scientifically, those are enormous ★</div>
   <p class="lead">Look, we did the polite thing and led with the trophies. But you cannot launch a ball at <strong>105 mph</strong> from a standing start with normal human legs. Physicists studied the free kick. Nobody's been brave enough to study these. Each thigh allegedly has its own postal code, its own weather system, and a restraining order from at least one goalkeeper. Please observe the engine room:</p>
+  <p class="scroll-hint">👉 swipe / scroll sideways for all of them <span class="arrow">➡️</span></p>
   <div class="thighs-grid">
     <figure><img src="img/thighs2.jpg" alt="Roberto Carlos striking a ball for Inter" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>even the ball looked nervous. 😬</figcaption></figure>
     <figure><img src="img/thighs3.jpeg" alt="Roberto Carlos winding up a shot for Brazil" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption>powered by pure quadricep. ⚡</figcaption></figure>
@@ -696,7 +705,7 @@
     </div>
 
     <div class="card c-dinho">
-      <img class="photo" src="img/ronaldinho.jpg.webp" alt="Ronaldinho celebrating for Brazil" loading="lazy" onerror="this.style.display='none'">
+      <img class="photo" src="img/ronaldinho.webp" alt="Ronaldinho celebrating for Brazil" loading="lazy" onerror="this.style.display='none'">
       <div class="top">
         <div class="pos">Attacking mid / forward</div>
         <div class="name">Ronaldinho</div>
